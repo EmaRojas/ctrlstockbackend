@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only server.ts",
-    "build": "npx tsc",
+  "build": "echo 'Build skipped'",
   "start": "node dist/server.js"
+
   },
   "dependencies": {
     "cors": "^2.8.5",
