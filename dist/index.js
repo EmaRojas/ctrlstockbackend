@@ -12,8 +12,15 @@ const cashRegister_1 = __importDefault(require("./routes/cashRegister"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env;
-// Middleware
-app.use((0, cors_1.default)());
+const allowedOrigins = [
+    "https://ctrolstockfront-git-caja-emarojas-projects.vercel.app",
+    "http://localhost:5173"
+];
+app.use((0, cors_1.default)({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true
+}));
 app.use(express_1.default.json());
 // Rutas
 app.use("/products", products_1.default);
