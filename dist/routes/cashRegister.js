@@ -57,7 +57,7 @@ router.delete("/movement/:id", async (req, res) => {
     const cash = await CashRegister_1.CashRegister.findOne({ status: "abierta" });
     if (!cash)
         return res.status(400).json({ message: "No hay caja abierta" });
-    const index = cash.movements.findIndex((m) => m._id?.toString() === id);
+    const index = cash.movements.findIndex((m) => { var _a; return ((_a = m._id) === null || _a === void 0 ? void 0 : _a.toString()) === id; });
     if (index === -1)
         return res.status(404).json({ message: "Movimiento no encontrado" });
     cash.movements.splice(index, 1);
