@@ -1,6 +1,7 @@
-import mongoose, { Schema, Document, model } from "mongoose";
+import mongoose, { Schema, Document, model, Types } from "mongoose";
 
 export interface IMovement {
+  _id?: Types.ObjectId;
   type: "ingreso" | "egreso";
   amount: number;
   paymentMethod: "efectivo" | "tarjeta" | "mercadopago" | "qr" | "otros";

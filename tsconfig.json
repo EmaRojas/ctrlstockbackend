@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
+    "outDir": "dist",
+    "module": "commonjs",
     "target": "ES2020",
-    "module": "CommonJS",
     "esModuleInterop": true,
-    "strict": true
-  }
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["api/**/*.ts"],   // <-- todos los .ts dentro de api
+  "exclude": ["dist"]
 }
