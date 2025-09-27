@@ -18,8 +18,7 @@ const allowedOrigins = [
 ];
 app.use((0, cors_1.default)({
     origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 }));
 app.use(express_1.default.json());
 // Rutas
