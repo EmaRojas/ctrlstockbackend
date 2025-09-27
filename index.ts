@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env;
 app.use(cors({
-  origin: ["http://localhost:5173", "https://192.168.120.24:5173"], // agrega otros orígenes si es necesario
+  origin: ["http://localhost:5173", "https://192.168.120.24:5173","https://ctrolstockfront-git-caja-emarojas-projects.vercel.app"], // agrega otros orígenes si es necesario
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   credentials: true
 }));
