@@ -9,9 +9,11 @@ import cashRegisterRouter from "./routes/cashRegister";
 dotenv.config();
 const app = express();
 const PORT = process.env;
-
-// Middleware
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://192.168.120.24:5173"], // agrega otros orígenes si es necesario
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Rutas
