@@ -9,11 +9,18 @@ import cashRegisterRouter from "./routes/cashRegister";
 dotenv.config();
 const app = express();
 const PORT = process.env;
+
+const allowedOrigins = [
+  "https://ctrolstockfront-git-caja-emarojas-projects.vercel.app",
+  "http://localhost:5173"
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://192.168.120.24:5173","https://ctrolstockfront-git-caja-emarojas-projects.vercel.app"], // agrega otros orígenes si es necesario
+  origin: allowedOrigins,
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   credentials: true
 }));
+
 app.use(express.json());
 
 // Rutas
