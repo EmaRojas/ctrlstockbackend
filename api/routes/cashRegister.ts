@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { CashRegister, ICashRegister } from "../models/CashRegister";
+import { CashRegister } from "../models/CashRegister";
 
 const router = Router();
 

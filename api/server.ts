@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import productsRouter from "./routes/products";
-import cashRegisterRouter from "./routes/cashregister";
+import cashRegisterRouter from "./routes/cashRegister";
 
 dotenv.config();
 const app = express();
