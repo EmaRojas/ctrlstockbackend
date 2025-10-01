@@ -75,6 +75,7 @@ router.get("/active", async (_req, res) => {
 router.post("/movement", async (req, res) => {
     try {
         const { type, amount, paymentMethod, concept, products, client, user } = req.body;
+        console.log(req.body);
         // 1️⃣ Buscar caja abierta
         const cash = await CashRegister_1.CashRegister.findOne({ status: "abierta" });
         if (!cash) {
@@ -83,7 +84,7 @@ router.post("/movement", async (req, res) => {
         // 2️⃣ Validar que products tenga quantity
         if ((products === null || products === void 0 ? void 0 : products.length) > 0) {
             for (const p of products) {
-                if (typeof p.quantity !== "number" || p.quantity <= 0) {
+                if ((p.barcode != "0000" && p.barcode != "1111") || typeof p.quantity !== "number" || p.quantity <= 0) {
                     return res.status(400).json({ message: `Cantidad inválida para el producto ${p.name}` });
                 }
             }
