@@ -28,7 +28,11 @@ app.use((req, res, next) => {
         return res.sendStatus(200);
     next();
 });
+const PORT = process.env.PORT || 3000;
 app.use(express_1.default.json());
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
 // Rutas
 app.use("/products", products_1.default);
 app.use("/cashRegister", cashRegister_1.default);

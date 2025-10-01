@@ -1,13 +1,4 @@
-import mongoose, { Schema, Document, model, Types } from "mongoose";
-
-export interface IMovement {
-  _id?: Types.ObjectId;
-  type: "ingreso" | "egreso";
-  amount: number;
-  paymentMethod: "efectivo" | "tarjeta" | "mercadopago" | "qr" | "otros";
-  concept?: string;
-  date?: Date;
-}
+import mongoose, { Schema, Document, model } from "mongoose";
 
 export interface ICashRegister extends Document {
   openDate: Date;
@@ -16,20 +7,8 @@ export interface ICashRegister extends Document {
   finalAmount?: number;
   status: "abierta" | "cerrada";
   openedBy?: string;
-  movements: IMovement[];
+  movements: mongoose.Types.ObjectId[];
 }
-
-const MovementSchema = new Schema<IMovement>({
-  type: { type: String, enum: ["ingreso", "egreso"], required: true },
-  amount: { type: Number, required: true },
-  paymentMethod: {
-    type: String,
-    enum: ["efectivo", "tarjeta", "mercadopago", "qr", "otros"],
-    required: true,
-  },
-  concept: { type: String },
-  date: { type: Date, default: Date.now },
-});
 
 const CashRegisterSchema = new Schema<ICashRegister>({
   openDate: { type: Date, default: Date.now },
@@ -38,7 +17,7 @@ const CashRegisterSchema = new Schema<ICashRegister>({
   finalAmount: { type: Number },
   status: { type: String, enum: ["abierta", "cerrada"], default: "abierta" },
   openedBy: { type: String },
-  movements: [MovementSchema],
+  movements: [{ type: mongoose.Schema.Types.ObjectId, ref: "Transaction" }], // ✅ corregido
 });
 
 export const CashRegister = model<ICashRegister>("CashRegister", CashRegisterSchema);

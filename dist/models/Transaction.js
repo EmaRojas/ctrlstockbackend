@@ -33,15 +33,24 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CashRegister = void 0;
+exports.Transaction = void 0;
+// models/Transaction.ts
 const mongoose_1 = __importStar(require("mongoose"));
-const CashRegisterSchema = new mongoose_1.Schema({
-    openDate: { type: Date, default: Date.now },
-    closeDate: { type: Date },
-    initialAmount: { type: Number, required: true },
-    finalAmount: { type: Number },
-    status: { type: String, enum: ["abierta", "cerrada"], default: "abierta" },
-    openedBy: { type: String },
-    movements: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Transaction" }], // ✅ corregido
+const ProductSoldSchema = new mongoose_1.Schema({
+    barcode: String,
+    name: String,
+    price: Number,
+    quantity: Number,
 });
-exports.CashRegister = (0, mongoose_1.model)("CashRegister", CashRegisterSchema);
+const TransactionSchema = new mongoose_1.Schema({
+    type: { type: String, enum: ["ingreso", "egreso"], required: true },
+    amount: { type: Number, required: true },
+    paymentMethod: { type: String, required: true },
+    concept: { type: String },
+    products: { type: [ProductSoldSchema], required: true },
+    client: { type: String },
+    user: { type: String },
+    date: { type: Date, default: Date.now },
+    cashRegister: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "CashRegister", required: true },
+});
+exports.Transaction = (0, mongoose_1.model)("Transaction", TransactionSchema);
