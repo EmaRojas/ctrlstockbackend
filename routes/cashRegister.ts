@@ -89,7 +89,7 @@ router.post("/movement", async (req: Request, res: Response) => {
     // 2️⃣ Validar que products tenga quantity
     if (products?.length > 0) {
       for (const p of products) {
-        if ((p.barcode != "0000" && p.barcode != "1111") || typeof p.quantity !== "number" || p.quantity <= 0) {
+        if ((p.barcode != "0000" && p.barcode != "1111") && typeof p.quantity !== "number" || p.quantity <= 0) {
           return res.status(400).json({ message: `Cantidad inválida para el producto ${p.name}` });
         }
       }
